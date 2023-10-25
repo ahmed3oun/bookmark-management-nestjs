@@ -1,0 +1,9 @@
+> yarn add -D prisma
+> yarn add @prisma/client
+> yarn prisma init
+
+> yarn prisma migrate dev
+> yarn prisma studio
+
+> nest g module module_name
+> nest g service service_name
