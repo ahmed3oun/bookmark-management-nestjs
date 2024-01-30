@@ -1,19 +1,19 @@
 version: '3.8'
 services:
-  dev_db:
+  dev-db:
     container_name: db_container
     image: postgres:13
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_USER= postgres
-      - POSTGRES_PASSWORD= 123
+      - POSTGRES_PASSWORD= postgres
       - POSTGRES_DB= bookmarks
     volumes:
       - dev_db:/data/db
     networks:
-      - freecodecamp
+      - wolo
 networks:
-  freecodecamp:
+  wolo:
 volumes:
   dev_db:
