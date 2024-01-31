@@ -45,7 +45,6 @@ export class AuthService {
         token: await this.jwtService.signAsync(payload),
       };
 
-      return current_user;
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2025') {
