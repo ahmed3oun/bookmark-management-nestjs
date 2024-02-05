@@ -16,16 +16,30 @@ export class AuthService {
     email: string;
     password: string;
   }): Observable<Record<string, any>> {
-    return this.http.post(`${environment.baseApiUrl}/auth/login`, { email, password });
+    return this.http.post(`${environment.baseApiUrl}/auth/signin`, {
+      email,
+      password,
+    });
   }
 
   signup({
     email,
     password,
+    fullname,
   }: {
     email: string;
     password: string;
+    fullname: string;
   }): Observable<Record<string, any>> {
-    return this.http.post(`${environment.baseApiUrl}/auth/signup`, { email, password });
+    return this.http.post(`${environment.baseApiUrl}/auth/signup`, {
+      email,
+      password,
+      fullname,
+    });
+  }
+
+  logout(): void {
+    window.localStorage.clear();
+    window.location.reload();
   }
 }

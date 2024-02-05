@@ -1,8 +1,8 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -10,4 +10,46 @@
       <ion-title size="large">login</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p>
+          <ion-text color="primary">
+            <h1 class="ion-text-center">Login to manage your bookmarks</h1>
+          </ion-text>
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list
+          [ngStyle]="{'min-height': 'calc(100vh - 90px)'}"
+          class="ion-padding ion-align-items-center ion-justify-content-center"
+        >
+          <ion-item>
+            <ion-input
+              label="Email Address"
+              labelPlacement="stacked"
+              [clearOnEdit]="true"
+              placeholder="Enter your email..."
+              [(ngModel)]="formData.login"
+            >
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Password"
+              labelPlacement="stacked"
+              type="password"
+              placeholder="Enter your password (at least 6 caracters)"
+              [(ngModel)]="formData.password"
+            >
+            </ion-input>
+          </ion-item>
+          <ion-button class="ion-margin" (click)="submit()">Login</ion-button>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

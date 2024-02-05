@@ -22,6 +22,7 @@ export class BookmarkService {
           data: {
             title: bookmarkDto.title,
             link: bookmarkDto.link,
+            description: bookmarkDto.description,
             userId,
           },
         });
@@ -99,7 +100,7 @@ export class BookmarkService {
     try {
       const deleted_bookmark = await this.prisma.bookmark.delete({
         where: {
-          id,
+          id: parseInt(`${id}`),
         },
       });
 
@@ -111,9 +112,13 @@ export class BookmarkService {
 
   async findOne(id: number) {
     try {
+      console.log({
+        id,
+      });
+
       const bookmark = await this.prisma.bookmark.findUnique({
         where: {
-          id,
+          id: parseInt(`${id}`),
         },
       });
       return bookmark;

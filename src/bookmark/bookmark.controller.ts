@@ -55,10 +55,25 @@ export class BookmarkController {
     @Param('id') id: number,
     @Res() res: Response,
   ): Promise<Response<any, Record<string, any>>> {
+    
     const bookmark = await this.bookmarkService.findOne(id);
     return res.status(200).send({
       success: true,
       message: `Bookmark id ${id} fetched successfully!`,
+      bookmark: bookmark,
+    });
+  }
+  @UseGuards(AuthGuard)
+  @Get('delete/:id')
+  async deleteOne(
+    @GetUser('id') userId: number,
+    @Param('id') id: number,
+    @Res() res: Response,
+  ): Promise<Response<any, Record<string, any>>> {
+    const bookmark = await this.bookmarkService.delete(id);
+    return res.status(200).send({
+      success: true,
+      message: `Bookmark id ${id} deleted successfully!`,
       bookmark: bookmark,
     });
   }

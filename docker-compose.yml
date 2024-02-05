@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  dev-db:
+  pg_db:
     container_name: db_container
     image: postgres:13
     ports:
@@ -9,11 +9,40 @@ services:
       - POSTGRES_USER= postgres
       - POSTGRES_PASSWORD= postgres
       - POSTGRES_DB= bookmarks
+    restart: always
     volumes:
-      - dev_db:/data/db
+      - pg_db:/data/db
     networks:
       - wolo
+
+  api:
+    container_name: back_container
+    build: ./
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@pg_db:5432/bookmarks?schema=public
+      - JWT_SECRET=bookmarks-management-jwt-secret-key
+      - JWT_EXPIRY=8600s
+      - PORT=3000
+    depends_on:
+      - pg_db
+    volumes:
+      - bookmark_back:/app
+
+  front:
+    container_name: front_container
+    build: ./bookmark-management-frontend/
+    ports:
+      - "80:8001"
+    depends_on:
+      - api
+    volumes:
+      - bookmark_front:/app
+
 networks:
   wolo:
 volumes:
-  dev_db:
+  pg_db:
+  bookmark_back:
+  bookmark_front:
