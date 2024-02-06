@@ -32,6 +32,18 @@
 $ yarn install
 ```
 
+## Dockerization
+
+```bash
+$ yarn app:up
+```
+```bash
+$ yarn app:restart
+```
+```bash
+$ yarn app:down
+```
+
 ## Running the app
 
 ```bash
