@@ -38,6 +38,15 @@ const routes: Routes = [
     canActivate: [IsLoggedOutGuard],
   },
   {
+    path: 'create-bookmark',
+    loadChildren: () =>
+      import('./pages/create-bookmark/create-bookmark.module').then(
+        (m) => m.CreateBookmarkPageModule,
+      ),
+    pathMatch: 'full',
+    canActivate: [IsLoggedInGuard],
+  },
+  {
     path: '**',
     redirectTo: window.localStorage.getItem('token') ? 'bookmarks' : 'login',
     pathMatch: 'full',

@@ -29,7 +29,7 @@ export class AppComponent {
       title: 'Bookmarks',
     },
     {
-      url: 'bookmark/create',
+      url: 'create-bookmark',
       icon: 'add',
       title: 'Add bookmark',
     },
